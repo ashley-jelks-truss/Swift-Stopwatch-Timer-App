@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var time = 0
+    var time = 55
 //    
 //    func result() {
 //        
@@ -29,25 +29,55 @@ class ViewController: UIViewController {
     
     func startTimer() {
         
+        if time <= 9 {
+        
         time++
         
         timerLabel.text = ("00:0" + String(time))
         
+        }
+        
         if time > 9 {
             
-                time ++
-             timerLabel.text = ("00:" + String(time))
+            time++
+            
+            timerLabel.text = ("00:" + String(time))
             
         }
         
-        /* Need to do a few things when I return:
-        a) Either use verbal or math logic
-        b) For verbal just display seconds passed and minutes passed if > 59 secs
-        c) For math logic figure out how to use NSTimers to roll seconds into minutes into hours etc.
+        if time > 59 {
+            
+            let minuteCalculator:String = "1:0"
+            
+            time = 0
+            
+            time++
+            
+            timerLabel.text = (minuteCalculator + String(time))
+            
+            if time  > 59 {
+                
+                time = 0
+                
+                time++
+                
+                let convertDigit: Character = minuteCalculator[minuteCalculator.startIndex]
+                
+                let convertedCharToString: String = String(convertDigit)
+                
+                var convertedStringtoInteger = Int(convertedCharToString)!
+                
+                timerLabel.text = "\(convertedStringtoInteger)" + ":" + "\(time)"
+                
+                convertedStringtoInteger++
+                
+            }
+        }
         
-       
         
     }
+    
+   
     
     @IBOutlet var timerLabel: UILabel!
     
@@ -91,9 +121,9 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
-}
 
+
+}
