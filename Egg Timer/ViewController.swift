@@ -10,74 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var time = 55
-//    
-//    func result() {
-//        
-//        time++
-//
-//        if time == 1 {
-//        print((time), "second passed")
-//    }
-//            
-//        else {
-//            print((time), "seconds passed")
-//    }
-//}
+    var time = 0
     
     var timer = NSTimer()
     
     func startTimer() {
         
-        if time <= 9 {
         
         time++
+        timerLabel.text = "\(time)"
         
-        timerLabel.text = ("00:0" + String(time))
-        
-        }
-        
-        if time > 9 {
-            
-            time++
-            
-            timerLabel.text = ("00:" + String(time))
-            
-        }
-        
-        if time > 59 {
-            
-            let minuteCalculator:String = "1:0"
-            
-            time = 0
-            
-            time++
-            
-            timerLabel.text = (minuteCalculator + String(time))
-            
-            if time  > 59 {
-                
-                time = 0
-                
-                time++
-                
-                let convertDigit: Character = minuteCalculator[minuteCalculator.startIndex]
-                
-                let convertedCharToString: String = String(convertDigit)
-                
-                var convertedStringtoInteger = Int(convertedCharToString)!
-                
-                timerLabel.text = "\(convertedStringtoInteger)" + ":" + "\(time)"
-                
-                convertedStringtoInteger++
-                
             }
-        }
-        
-        
-    }
     
-   
     
     @IBOutlet var timerLabel: UILabel!
     
@@ -88,9 +32,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func resetTimer(sender: AnyObject) {
+        
+        timer.invalidate()
+        
+        time = 0
+        
+        timerLabel.text = "0"
     }
     
     @IBAction func pauseTimer(sender: AnyObject) {
+        
+        timer.invalidate()
     }
     
     
